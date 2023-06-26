@@ -1,4 +1,4 @@
-package com.example.rickmorty
+package com.example.rickmorty.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -16,7 +16,7 @@ object NetworkLayer {
         .build()
 
     val rickAndMortyService: RickAndMortyService by lazy {
-        retrofit.create(com.example.rickmorty.RickAndMortyService::class.java)
+        retrofit.create(RickAndMortyService::class.java)
     }
 
     val apiClient = ApiClient(rickAndMortyService)

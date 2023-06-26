@@ -1,16 +1,22 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+//Epoxy
+kapt {
+    correctErrorTypes = true
 }
 
 android {
     namespace 'com.example.rickmorty'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.rickmorty"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -31,7 +37,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
@@ -41,6 +47,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.core:core-ktx:+'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -52,5 +59,10 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+
+    def epoxyVersion = "5.1.3"
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    // Add the annotation processor if you are using Epoxy's annotations (recommended)
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 
 }

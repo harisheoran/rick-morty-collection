@@ -1,6 +1,4 @@
-package com.example.rickmorty
-
-import android.location.Location
+package com.example.rickmorty.network.response
 
 data class GetCharacterByIdResponse(
     val created: String = "",

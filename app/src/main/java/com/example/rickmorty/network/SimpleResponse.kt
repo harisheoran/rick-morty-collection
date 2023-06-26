@@ -1,4 +1,4 @@
-package com.example.rickmorty
+package com.example.rickmorty.network
 
 import retrofit2.Response
 
@@ -16,6 +16,7 @@ data class SimpleResponse<T>(
      within the companion object can be accessed globally without creating an instance of the enclosing class
      */
 
+    // these functions are helper funstions to create SimpleResponse Object easily.
     companion object {
         fun <T> success(data: Response<T>): SimpleResponse<T> {
             return SimpleResponse(
@@ -34,12 +35,13 @@ data class SimpleResponse<T>(
         }
     }
 
-
     /*
     a sealed class is a special kind of abstract class that restricts the inheritance of its subclasses.
     It provides a limited set of subclasses that can be defined within the same file where the sealed class is
     declared.
      */
+
+    // Like an enum
     sealed class Status {
         object Success : Status()
         object Failure : Status()
