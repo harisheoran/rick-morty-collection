@@ -4,7 +4,7 @@ import com.example.rickmorty.network.response.GetCharacterByIdResponse
 
 data class GetCharactersPageResponse(
     val info: Info = Info(),
-    val results: List<GetCharacterByIdResponse> = listOf()
+    val results: List<GetCharacterByIdResponse> = emptyList()
 ) {
     data class Info(
         val count: Int = 0,
