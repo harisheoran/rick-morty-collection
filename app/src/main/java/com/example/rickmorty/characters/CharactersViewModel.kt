@@ -18,6 +18,8 @@ class CharactersViewModel : ViewModel() {
         prefetchDistance = 40
     )
 
+    // Pager provides a public API for construting instance of Pagingdata which will be exposed in reactive streams
+    // using paging config and paging data source
     val pager = Pager(
         config = pagingConfig,
         pagingSourceFactory = { CharactersPagingDataSource(repository = repository) }
