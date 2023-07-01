@@ -1,11 +1,11 @@
 package com.example.rickmorty
 
+import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
-import com.example.rickmorty.databinding.ModelCharacterDetailsDataPointBinding
-import com.example.rickmorty.databinding.ModelCharacterDetailsHeaderBinding
-import com.example.rickmorty.databinding.ModelCharacterDetailsImageBinding
+import com.example.rickmorty.databinding.*
+import com.example.rickmorty.domain.models.Character
+import com.example.rickmorty.domain.models.Episode
 import com.example.rickmorty.epoxy.LoadingEpoxyModel
-import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import com.squareup.picasso.Picasso
 
 class CharacterDetailsEpoxyController : EpoxyController() {
@@ -23,7 +23,7 @@ class CharacterDetailsEpoxyController : EpoxyController() {
         }
 
     // if our response is not null then we re-build our UI and remove loading UI.
-    var characterResponse: GetCharacterByIdResponse? = null
+    var character: Character? = null
         set(value) {
             field = value
             if (field != null) {
@@ -40,29 +40,45 @@ class CharacterDetailsEpoxyController : EpoxyController() {
         }
 
         // error handling
-        if (characterResponse == null) {
+        if (character == null) {
             return
         }
 
         // otherwise add all models -> Header -> Image -> Data Points (it appears in order)
         HeaderEpoxyModel(
-            name = characterResponse!!.name,
-            gender = characterResponse!!.gender,
-            status = characterResponse!!.status
-        ).id("header").addTo(this)              // this id key must be unique and then add this model to this model
+            name = character!!.name,
+            gender = character!!.gender,
+            status = character!!.status
+        ).id("header").addTo(this)              // this id key mu st be unique and then add this model to this model
 
         ImageEpoxyModel(
-            imgUrl = characterResponse!!.image
+            imgUrl = character!!.image
         ).id("image").addTo(this)
+
+        if (character!!.episodeList.isNotEmpty()) {
+            val episodeItems = character!!.episodeList.map {
+                EpisodeModel(
+                    episode = it
+                ).id(it.id)
+            }
+
+            EpisodeLabelModel(title = "Episodes").id("episode_label").addTo(this)
+
+            CarouselModel_()
+                .id("episode_horizontal_carousel")
+                .models(episodeItems)
+                .numViewsToShowOnScreen(1.15f)
+                .addTo(this)
+        }
 
         DataPointEpoxyModel(
             label = "Origin",
-            description = characterResponse!!.origin.name
+            description = character!!.origin.name
         ).id("data_point_1").addTo(this)
 
         DataPointEpoxyModel(
             label = "Species",
-            description = characterResponse!!.species
+            description = character!!.species
         ).id("data_point_2").addTo(this)
 
     }
@@ -104,6 +120,23 @@ class CharacterDetailsEpoxyController : EpoxyController() {
         override fun ModelCharacterDetailsDataPointBinding.bind() {
             labelTextView.text = label
             labelNameTextView.text = description
+        }
+    }
+
+    data class EpisodeModel(
+        val episode: Episode
+    ) : ViewBindingKotlinModel<ModelEpisodeCarouselItemBinding>(R.layout.model_episode_carousel_item) {
+        override fun ModelEpisodeCarouselItemBinding.bind() {
+            episodesTextView.text = episode.episode
+            episodesDetailsTextView.text = "${episode.name}\n${episode.air_date}"
+        }
+    }
+
+    data class EpisodeLabelModel(
+        val title: String
+    ) : ViewBindingKotlinModel<ModelEpisodeLabelBinding>(R.layout.model_episode_label) {
+        override fun ModelEpisodeLabelBinding.bind() {
+            labelTextView.text = title
         }
     }
 

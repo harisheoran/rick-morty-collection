@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.characterByIdLiveData.observe(this) {
             //update the data that is in epoxy controller
-            epoxyController.characterResponse = it
+            epoxyController.character = it
 
             if (it == null) {
                 Toast.makeText(this@MainActivity, "Unsuccessful Request", Toast.LENGTH_SHORT).show()
