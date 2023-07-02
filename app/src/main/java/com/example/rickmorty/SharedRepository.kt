@@ -34,7 +34,6 @@ class SharedRepository {
             return emptyList()
         }
 
-
         return request.body
     }
 }
