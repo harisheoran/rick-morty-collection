@@ -42,8 +42,6 @@ object NetworkLayer {
                 .alwaysReadResponseBody(false)
                 .build()
         )
-
-
         return client.build()
     }
 }
