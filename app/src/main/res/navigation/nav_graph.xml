@@ -4,6 +4,9 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
             app:startDestination="@id/characterListFragment">
 
+    <action android:id="@+id/action_global_to_episodeDetailsFragment"
+            app:destination="@+id/episodeDetailsFragment"/>
+
     <fragment android:id="@+id/characterListFragment"
               android:name="com.example.rickmorty.ui.CharacterListFragment"
               android:label="Rick &amp; Morty"
@@ -28,7 +31,15 @@
                   android:defaultValue="-1"/>
     </fragment>
     <fragment android:id="@+id/episodeListFragment"
-              android:name="com.example.rickmorty.ui.EpisodeListFragment"
+              android:name="com.example.rickmorty.episodes.EpisodeListFragment"
               android:label="All Episodes"
               tools:layout="@layout/fragment_episode_list"/>
+    <dialog android:id="@+id/episodeDetailsFragment"
+            android:name="com.example.rickmorty.episodes.details.EpisodeDetailsFragment"
+            android:label="Episode Details">
+        <argument android:name="episodeId"
+                  android:defaultValue="1"
+                  app:argType="integer"/>
+    </dialog>
+
 </navigation>

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.example.rickmorty.CharacterDetailsEpoxyController
+import com.example.rickmorty.NavGraphDirections
 import com.example.rickmorty.R
 import com.example.rickmorty.SharedViewModel
 
@@ -20,7 +21,7 @@ class CharacterFragment : Fragment() {
         ViewModelProvider(this).get(SharedViewModel::class.java)
     }
 
-    private val epoxyController = CharacterDetailsEpoxyController()
+    private val epoxyController = CharacterDetailsEpoxyController(::onClickEpisode)
 
     private val args: CharacterFragmentArgs by navArgs()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -46,5 +47,10 @@ class CharacterFragment : Fragment() {
         viewModel.refreshCharacter(characterId = args.characterId)
         val epoxyRecyclerView = view.findViewById<EpoxyRecyclerView>(R.id.epoxy_recycler_view)
         epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
+    }
+
+    private fun onClickEpisode(episodeId: Int) {
+        val action = NavGraphDirections.actionGlobalToEpisodeDetailsFragment(episodeId)
+        findNavController().navigate(action)
     }
 }

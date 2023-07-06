@@ -5,7 +5,7 @@ import com.example.rickmorty.domain.models.Character
 import com.example.rickmorty.network.NetworkLayer
 import com.example.rickmorty.network.RickAndMortyCache
 import com.example.rickmorty.network.response.GetCharacterByIdResponse
-import com.example.rickmorty.network.response.GetEpisodeByIdReponse
+import com.example.rickmorty.network.response.GetEpisodeByIdResponse
 
 class SharedRepository {
     suspend fun getCharacterById(characterId: Int): Character? {
@@ -34,7 +34,7 @@ class SharedRepository {
         return character
     }
 
-    private suspend fun getEpisodesFromCharacterResponse(characterResponse: GetCharacterByIdResponse): List<GetEpisodeByIdReponse> {
+    private suspend fun getEpisodesFromCharacterResponse(characterResponse: GetCharacterByIdResponse): List<GetEpisodeByIdResponse> {
 
         val episodeRange = characterResponse.episode.map {
             it.substring(startIndex = it.lastIndexOf("/") + 1)

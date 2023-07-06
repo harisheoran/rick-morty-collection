@@ -1,6 +1,6 @@
 package com.example.rickmorty.network.response
 
-data class GetEpisodeByIdReponse(
+data class GetEpisodeByIdResponse(
     val air_date: String,
     val characters: List<String>,
     val created: String,
