@@ -22,7 +22,11 @@ class EpisodeListFragment : Fragment() {
 
     private val epoxyContoller = EpisodeListPagingEpoxyContoller(::onEpisodeClick)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_episode_list, container, false)
     }
 
@@ -35,7 +39,8 @@ class EpisodeListFragment : Fragment() {
             }
         }
 
-        view.findViewById<EpoxyRecyclerView>(R.id.epoxy_episode_recycler_view).setController(epoxyContoller)
+        view.findViewById<EpoxyRecyclerView>(R.id.epoxy_episode_recycler_view)
+            .setController(epoxyContoller)
 
     }
 
