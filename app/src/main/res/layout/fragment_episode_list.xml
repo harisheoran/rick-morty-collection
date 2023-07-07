@@ -5,15 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CharactersActivity">
+    tools:context=".episodes.EpisodeListFragment">
 
     <com.airbnb.epoxy.EpoxyRecyclerView
-        android:id="@+id/epoxy_character_recycler_view"
+        android:id="@+id/epoxy_episode_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:itemSpacing="8dp"
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"/>
+        app:spanCount="1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

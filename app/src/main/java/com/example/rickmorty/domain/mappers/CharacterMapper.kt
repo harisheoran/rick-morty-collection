@@ -2,10 +2,13 @@ package com.example.rickmorty.domain.mappers
 
 import com.example.rickmorty.domain.models.Character
 import com.example.rickmorty.network.response.GetCharacterByIdResponse
-import com.example.rickmorty.network.response.GetEpisodeByIdReponse
+import com.example.rickmorty.network.response.GetEpisodeByIdResponse
 
 object CharacterMapper {
-    fun mapTo(response: GetCharacterByIdResponse, networkEpisodesList: List<GetEpisodeByIdReponse>): Character {
+    fun mapTo(
+        response: GetCharacterByIdResponse,
+        networkEpisodesList: List<GetEpisodeByIdResponse> = emptyList()
+    ): Character {
         return Character(
             episodeList = networkEpisodesList.map {
                 EpisodeMapper.mapTo(it)

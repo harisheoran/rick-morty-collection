@@ -16,7 +16,7 @@ data class SimpleResponse<T>(
      within the companion object can be accessed globally without creating an instance of the enclosing class
      */
 
-    // these functions are helper funstions to create SimpleResponse Object easily.
+    // these functions are helper functions to create SimpleResponse Object easily.
     companion object {
         fun <T> success(data: Response<T>): SimpleResponse<T> {
             return SimpleResponse(
@@ -55,4 +55,7 @@ data class SimpleResponse<T>(
 
     val body: T
         get() = this.data!!.body()!!
+
+    val bodyNullable: T?
+        get() = this.data?.body()
 }

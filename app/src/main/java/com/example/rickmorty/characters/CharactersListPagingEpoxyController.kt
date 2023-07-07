@@ -14,7 +14,6 @@ import java.util.*
 class CharactersListPagingEpoxyController(
     private val onCharacterClicked: (Int) -> Unit
 ) : PagingDataEpoxyController<GetCharacterByIdResponse>() {
-
     override fun buildItemModel(currentPosition: Int, item: GetCharacterByIdResponse?): EpoxyModel<*> {
         return GridModelForEpoxyPaging(
             characterId = item!!.id,

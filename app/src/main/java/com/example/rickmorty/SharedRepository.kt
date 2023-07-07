@@ -3,11 +3,19 @@ package com.example.rickmorty
 import com.example.rickmorty.domain.mappers.CharacterMapper
 import com.example.rickmorty.domain.models.Character
 import com.example.rickmorty.network.NetworkLayer
+import com.example.rickmorty.network.RickAndMortyCache
 import com.example.rickmorty.network.response.GetCharacterByIdResponse
-import com.example.rickmorty.network.response.GetEpisodeByIdReponse
+import com.example.rickmorty.network.response.GetEpisodeByIdResponse
 
 class SharedRepository {
     suspend fun getCharacterById(characterId: Int): Character? {
+
+        // check the cache
+        val cachedCharacter = RickAndMortyCache.characterMap[characterId]
+        if (cachedCharacter != null) {
+            return cachedCharacter
+        }
+
         val request = NetworkLayer.apiClient.getCharacterById(characterId)
 
         if (request.failed || !request.isSucceed) {
@@ -16,13 +24,17 @@ class SharedRepository {
 
         val networkEpisodes = getEpisodesFromCharacterResponse(request.body)
 
-        return CharacterMapper.mapTo(
+        val character = CharacterMapper.mapTo(
             response = request.body,
             networkEpisodesList = networkEpisodes
         )
+
+        // update character cache
+        RickAndMortyCache.characterMap[characterId] = character
+        return character
     }
 
-    private suspend fun getEpisodesFromCharacterResponse(characterResponse: GetCharacterByIdResponse): List<GetEpisodeByIdReponse> {
+    private suspend fun getEpisodesFromCharacterResponse(characterResponse: GetCharacterByIdResponse): List<GetEpisodeByIdResponse> {
 
         val episodeRange = characterResponse.episode.map {
             it.substring(startIndex = it.lastIndexOf("/") + 1)
@@ -30,10 +42,9 @@ class SharedRepository {
 
         val request = NetworkLayer.apiClient.getEpisodeRange(episodeRange)
 
-        if (request.failed || !request.isSucceed){
+        if (request.failed || !request.isSucceed) {
             return emptyList()
         }
-
 
         return request.body
     }

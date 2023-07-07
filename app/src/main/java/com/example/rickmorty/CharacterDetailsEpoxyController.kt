@@ -8,7 +8,9 @@ import com.example.rickmorty.domain.models.Episode
 import com.example.rickmorty.epoxy.LoadingEpoxyModel
 import com.squareup.picasso.Picasso
 
-class CharacterDetailsEpoxyController : EpoxyController() {
+class CharacterDetailsEpoxyController(
+    private val onEpisodeClick: (Int) -> Unit
+) : EpoxyController() {
 
     /* isLoading property is set to a new value, the custom setter is triggered.
      It updates the backing field with the new value and then checks if the new value is true.
@@ -58,7 +60,8 @@ class CharacterDetailsEpoxyController : EpoxyController() {
         if (character!!.episodeList.isNotEmpty()) {
             val episodeItems = character!!.episodeList.map {
                 EpisodeModel(
-                    episode = it
+                    episode = it,
+                    onClick = onEpisodeClick
                 ).id(it.id)
             }
 
@@ -124,11 +127,15 @@ class CharacterDetailsEpoxyController : EpoxyController() {
     }
 
     data class EpisodeModel(
-        val episode: Episode
+        val episode: Episode,
+        val onClick: (Int) -> Unit
     ) : ViewBindingKotlinModel<ModelEpisodeCarouselItemBinding>(R.layout.model_episode_carousel_item) {
         override fun ModelEpisodeCarouselItemBinding.bind() {
-            episodesTextView.text = episode.episode
+            episodesTextView.text = episode.getFormattedSeasonShort()
             episodesDetailsTextView.text = "${episode.name}\n${episode.air_date}"
+            root.setOnClickListener {
+                onClick(episode.id)
+            }
         }
     }
 

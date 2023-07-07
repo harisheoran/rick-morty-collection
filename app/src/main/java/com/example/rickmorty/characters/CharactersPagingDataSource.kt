@@ -12,9 +12,8 @@ class CharactersPagingDataSource(
     private val repository: CharactersRepository
 ) : PagingSource<Int, GetCharacterByIdResponse>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GetCharacterByIdResponse> {
-        val pageNumber = params.key ?: 1
-
         return try {
+            val pageNumber = params.key ?: 1
             val pageResult = repository.getCharactersPage(pageNumber)
             val pageResultList = pageResult?.results
 
