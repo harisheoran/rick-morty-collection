@@ -12,7 +12,6 @@ import com.airbnb.epoxy.EpoxyRecyclerView
 import com.example.rickmorty.R
 import com.example.rickmorty.characters.CharactersListPagingEpoxyController
 import com.example.rickmorty.characters.CharactersViewModel
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -47,9 +46,7 @@ class CharacterListFragment : Fragment() {
     }
 
     private fun onCharacterClicked(characterId: Int) {
-        FirebaseCrashlytics.getInstance().recordException(
-            RuntimeException("Character ID selected $characterId")
-        )
+
         val action = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterFragment(
             characterId
         )
