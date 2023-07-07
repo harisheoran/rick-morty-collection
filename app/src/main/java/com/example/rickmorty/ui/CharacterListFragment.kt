@@ -12,6 +12,7 @@ import com.airbnb.epoxy.EpoxyRecyclerView
 import com.example.rickmorty.R
 import com.example.rickmorty.characters.CharactersListPagingEpoxyController
 import com.example.rickmorty.characters.CharactersViewModel
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -25,7 +26,11 @@ class CharacterListFragment : Fragment() {
         ViewModelProvider(this).get(CharactersViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_character__list, container, false)
     }
 
@@ -36,12 +41,18 @@ class CharacterListFragment : Fragment() {
                 epoxyController.submitData(it)
             }
         }
-        view.findViewById<EpoxyRecyclerView>(R.id.epoxy_character_recycler_view).setController(epoxyController)
+        view.findViewById<EpoxyRecyclerView>(R.id.epoxy_character_recycler_view)
+            .setController(epoxyController)
 
     }
 
     private fun onCharacterClicked(characterId: Int) {
-        val action = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterFragment(characterId)
+        FirebaseCrashlytics.getInstance().recordException(
+            RuntimeException("Character ID selected $characterId")
+        )
+        val action = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterFragment(
+            characterId
+        )
         findNavController().navigate(action)
     }
 }
