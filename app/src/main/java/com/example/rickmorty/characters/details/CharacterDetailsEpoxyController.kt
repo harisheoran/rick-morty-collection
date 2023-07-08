@@ -1,7 +1,9 @@
-package com.example.rickmorty
+package com.example.rickmorty.characters.details
 
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
+import com.example.rickmorty.R
+import com.example.rickmorty.ViewBindingKotlinModel
 import com.example.rickmorty.databinding.*
 import com.example.rickmorty.domain.models.Character
 import com.example.rickmorty.domain.models.Episode

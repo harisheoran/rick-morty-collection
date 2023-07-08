@@ -7,7 +7,7 @@ import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import com.example.rickmorty.network.response.GetEpisodeByIdResponse
 import com.example.rickmorty.network.response.GetEpisodesPageResponse
 
-class EpisodeRepository {
+class EpisodeListRepository {
     suspend fun fetchEpisodes(pageIndex: Int): GetEpisodesPageResponse? {
         val episodePageRequest = NetworkLayer.apiClient.getEpisodePage(pageIndex)
 

@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 
 class EpisodeListFragment : Fragment() {
 
-    private val viewModel: EpisodesViewModel by lazy {
-        ViewModelProvider(this).get(EpisodesViewModel::class.java)
+    private val viewModel: EpisodeListViewModel by lazy {
+        ViewModelProvider(this).get(EpisodeListViewModel::class.java)
     }
 
     private val epoxyContoller = EpisodeListPagingEpoxyContoller(::onEpisodeClick)

@@ -1,4 +1,4 @@
-package com.example.rickmorty
+package com.example.rickmorty.characters.details
 
 import com.example.rickmorty.domain.mappers.CharacterMapper
 import com.example.rickmorty.domain.models.Character
@@ -7,7 +7,7 @@ import com.example.rickmorty.network.RickAndMortyCache
 import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import com.example.rickmorty.network.response.GetEpisodeByIdResponse
 
-class SharedRepository {
+class CharacterDetailsRepository {
     suspend fun getCharacterById(characterId: Int): Character? {
 
         // check the cache

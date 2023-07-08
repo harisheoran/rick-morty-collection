@@ -8,8 +8,8 @@ import com.example.rickmorty.network.response.GetCharacterByIdResponse
 private const val TAG = "PageResult"
 
 
-class CharactersPagingDataSource(
-    private val repository: CharactersRepository
+class CharacterListPagingDataSource(
+    private val repository: CharacterListRepository
 ) : PagingSource<Int, GetCharacterByIdResponse>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GetCharacterByIdResponse> {
         return try {

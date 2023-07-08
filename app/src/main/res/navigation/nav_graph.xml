@@ -8,7 +8,7 @@
             app:destination="@+id/episodeDetailsFragment"/>
 
     <fragment android:id="@+id/characterListFragment"
-              android:name="com.example.rickmorty.ui.CharacterListFragment"
+              android:name="com.example.rickmorty.characters.CharacterListFragment"
               android:label="Rick &amp; Morty"
               tools:layout="@layout/fragment_character__list">
         <action android:id="@+id/action_characterListFragment_to_characterFragment"
@@ -21,7 +21,7 @@
         />
     </fragment>
     <fragment android:id="@+id/characterFragment"
-              android:name="com.example.rickmorty.ui.CharacterFragment"
+              android:name="com.example.rickmorty.characters.details.CharacterFragment"
               android:label="Character Details"
               tools:layout="@layout/fragment_character">
         <deepLink app:uri="https://rickmorty/{characterId}"/>

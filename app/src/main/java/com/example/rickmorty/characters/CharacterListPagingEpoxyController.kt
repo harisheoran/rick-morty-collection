@@ -11,7 +11,7 @@ import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class CharactersListPagingEpoxyController(
+class CharacterListPagingEpoxyController(
     private val onCharacterClicked: (Int) -> Unit
 ) : PagingDataEpoxyController<GetCharacterByIdResponse>() {
     override fun buildItemModel(currentPosition: Int, item: GetCharacterByIdResponse?): EpoxyModel<*> {

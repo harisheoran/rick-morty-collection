@@ -1,4 +1,4 @@
-package com.example.rickmorty.ui
+package com.example.rickmorty.characters.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,15 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyRecyclerView
-import com.example.rickmorty.CharacterDetailsEpoxyController
 import com.example.rickmorty.NavGraphDirections
 import com.example.rickmorty.R
-import com.example.rickmorty.SharedViewModel
 
 class CharacterFragment : Fragment() {
 
-    private val viewModel: SharedViewModel by lazy {
-        ViewModelProvider(this).get(SharedViewModel::class.java)
+    private val viewModel: CharacterDetailsViewModel by lazy {
+        ViewModelProvider(this).get(CharacterDetailsViewModel::class.java)
     }
 
     private val epoxyController = CharacterDetailsEpoxyController(::onClickEpisode)

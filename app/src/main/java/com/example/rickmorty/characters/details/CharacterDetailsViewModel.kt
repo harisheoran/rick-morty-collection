@@ -1,4 +1,4 @@
-package com.example.rickmorty
+package com.example.rickmorty.characters.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,8 +8,8 @@ import com.example.rickmorty.domain.models.Character
 import kotlinx.coroutines.launch
 
 
-class SharedViewModel : ViewModel() {
-    private val repository = SharedRepository()
+class CharacterDetailsViewModel : ViewModel() {
+    private val repository = CharacterDetailsRepository()
 
     private val _characterByIdLiveData = MutableLiveData<Character?>()
     val characterByIdLiveData: LiveData<Character?> = _characterByIdLiveData

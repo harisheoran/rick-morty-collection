@@ -1,4 +1,4 @@
-package com.example.rickmorty.ui
+package com.example.rickmorty.characters
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,19 +10,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.example.rickmorty.R
-import com.example.rickmorty.characters.CharactersListPagingEpoxyController
-import com.example.rickmorty.characters.CharactersViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class CharacterListFragment : Fragment() {
 
-    val epoxyController = CharactersListPagingEpoxyController(
+    val epoxyController = CharacterListPagingEpoxyController(
         ::onCharacterClicked
     )
 
-    val viewModel: CharactersViewModel by lazy {
-        ViewModelProvider(this).get(CharactersViewModel::class.java)
+    val viewModel: CharacterListViewModel by lazy {
+        ViewModelProvider(this).get(CharacterListViewModel::class.java)
     }
 
     override fun onCreateView(
