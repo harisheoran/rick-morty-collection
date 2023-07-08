@@ -3,7 +3,7 @@ package com.example.rickmorty.characters
 import com.example.rickmorty.network.NetworkLayer
 import com.example.rickmorty.network.response.GetCharactersPageResponse
 
-class CharactersRepository {
+class CharacterListRepository {
 
     suspend fun getCharactersPage(pageIndex: Int): GetCharactersPageResponse? {
         val request = NetworkLayer.apiClient.getCharactersPages(pageIndex)

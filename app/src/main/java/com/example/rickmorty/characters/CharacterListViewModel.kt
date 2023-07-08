@@ -9,9 +9,9 @@ import androidx.paging.cachedIn
 import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import kotlinx.coroutines.flow.Flow
 
-class CharactersViewModel : ViewModel() {
+class CharacterListViewModel : ViewModel() {
 
-    private val repository = CharactersRepository()
+    private val repository = CharacterListRepository()
 
     private val pagingConfig = PagingConfig(
         pageSize = 20,
@@ -22,7 +22,7 @@ class CharactersViewModel : ViewModel() {
     // using paging config and paging data source
     val pager = Pager(
         config = pagingConfig,
-        pagingSourceFactory = { CharactersPagingDataSource(repository = repository) }
+        pagingSourceFactory = { CharacterListPagingDataSource(repository = repository) }
     )
 
     val pagingDataFlow: Flow<PagingData<GetCharacterByIdResponse>> = pager.flow.cachedIn(viewModelScope)

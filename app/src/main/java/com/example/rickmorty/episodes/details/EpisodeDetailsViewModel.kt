@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickmorty.domain.models.Episode
-import com.example.rickmorty.episodes.EpisodeRepository
+import com.example.rickmorty.episodes.EpisodeListRepository
 import kotlinx.coroutines.launch
 
 class EpisodeDetailsViewModel : ViewModel() {
 
-    private val repository = EpisodeRepository()
+    private val repository = EpisodeListRepository()
 
     private val _episodeLiveData = MutableLiveData<Episode?>()
     val episodeLiveData: LiveData<Episode?> = _episodeLiveData

@@ -5,8 +5,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.rickmorty.domain.mappers.EpisodeMapper
 
-class EpisodesPagingSource(
-    private val repository: EpisodeRepository
+class EpisodeListPagingSource(
+    private val repository: EpisodeListRepository
 ) : PagingSource<Int, EpisodeUIModel>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodeUIModel> {

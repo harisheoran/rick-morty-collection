@@ -7,14 +7,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 
-class EpisodesViewModel : ViewModel() {
-    private val repository = EpisodeRepository()
+class EpisodeListViewModel : ViewModel() {
+    private val repository = EpisodeListRepository()
 
     val pager = Pager(
         // Configure how data is loaded by passing additional properties to
         // PagingConfig, such as prefetchDistance.
         config = PagingConfig(pageSize = 10, prefetchDistance = 20),
-        pagingSourceFactory = { EpisodesPagingSource(repository = repository) }
+        pagingSourceFactory = { EpisodeListPagingSource(repository = repository) }
 
     )
 
