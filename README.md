@@ -1,12 +1,60 @@
-### Rick & Morty App
+## **Rick & Morty Collection App**
+---
 
-#### Tech Stack
-- MVVM Architecture
-- Kotlin Language
+File Structure
 
-  ##### Libraries used
-- Retrofit (for networking)
-- Picasso  (to display images)
-- Epoxy    (For multiple view types in recycler view)
-- Paging 3 (for pagination)
-- okhttp and Chucker (for network debugging)
+### **characters**
+- *details* - 
+    - CharacterFragment
+    - CharacterDetailsEpoxyController
+    - CharacterDetailsViewModel
+    - CharacterDetailsRepository
+
+- CharacterListFragment
+- CharacterListPagingEpoxyController
+- CharacterListPagingDataSource
+- CharacterListViewModel
+- CharacterListRepository
+
+### **domain**
+- *mappers*
+    - CharacterMapper
+    - EpisodeMapper
+
+- *models*
+    - Character
+    - Episode
+
+### **episodes**
+- *details*
+    - EpisodeDetailsFragment
+    - EpisodeDetailsEpoxyController
+    - EpisodeDetailsViewModel
+
+- EpisodeListFragment
+- EpisodeListPagingEpoxyContoller
+- EpisodeListPagingSource
+- EpisodeListViewModel
+- EpisodeListRepository
+- EpisodeUIModel
+
+### **epoxy**
+- LoadingEpoxyModel
+- ViewBindingKotlinModel
+
+### **network**
+- *response*
+    - GetCharacterByIdResponse
+    - GetCharactersPageResponse
+    - GetEpisodeByIdResponse
+    - GetEpisodesPageResponse
+    - PageInfo
+- NetworkLayer
+- RickAndMortyService
+- ApiClient
+- RickAndMortyCache
+- SimpleResponse
+
+### **HomeActivity**
+### **RickMortyApplication**
+    
