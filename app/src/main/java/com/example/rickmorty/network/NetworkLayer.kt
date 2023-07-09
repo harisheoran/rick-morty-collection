@@ -15,13 +15,13 @@ object NetworkLayer {
         .add(KotlinJsonAdapterFactory())
         .build()
 
-    val retrofit: Retrofit = Retrofit.Builder()
+    private val retrofit: Retrofit = Retrofit.Builder()
         .client(getLoggingHttpClient())
         .baseUrl("https://rickandmortyapi.com/api/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val rickAndMortyService: RickAndMortyService by lazy {
+    private val rickAndMortyService: RickAndMortyService by lazy {
         retrofit.create(RickAndMortyService::class.java)
     }
 

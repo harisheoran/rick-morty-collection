@@ -11,6 +11,7 @@ private const val TAG = "PageResult"
 class CharacterListPagingDataSource(
     private val repository: CharacterListRepository
 ) : PagingSource<Int, GetCharacterByIdResponse>() {
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GetCharacterByIdResponse> {
         return try {
             val pageNumber = params.key ?: 1

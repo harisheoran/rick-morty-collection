@@ -9,48 +9,51 @@ import com.example.rickmorty.databinding.ModelCharacterListTitleBinding
 import com.example.rickmorty.epoxy.LoadingEpoxyModel
 import com.example.rickmorty.network.response.GetCharacterByIdResponse
 import com.squareup.picasso.Picasso
-import java.util.*
 
 class CharacterListPagingEpoxyController(
     private val onCharacterClicked: (Int) -> Unit
 ) : PagingDataEpoxyController<GetCharacterByIdResponse>() {
+
+    var isLoading: Boolean = true
+        set(value) {
+            field = value
+            if (field) {
+                requestModelBuild()
+            }
+        }
+
+    var characterList: GetCharacterByIdResponse? = null
+        set(value) {
+            field = value
+            if (field != null) {
+                isLoading = false
+                requestModelBuild()
+            }
+        }
+
     override fun buildItemModel(currentPosition: Int, item: GetCharacterByIdResponse?): EpoxyModel<*> {
+
+        if (item != null) {
+            isLoading = false
+        }
+
+
         return GridModelForEpoxyPaging(
             characterId = item!!.id,
             name = item!!.name,
             imageUrl = item!!.image,
             onCharacterClicked = onCharacterClicked
         ).id(item.id)
+
+
     }
 
-    // this function add all build models to adatpter,
-    // override this to add new model or remove one
-    // this require a list of EpoxyModel list of any type has that moment of any , that was returned from above function
     override fun addModels(models: List<EpoxyModel<*>>) {
-
-        // loading status
-        if (models.isEmpty()) {
-            LoadingEpoxyModel().id("loading").addTo(this)
-            return
+        if (isLoading || models.isEmpty()) {
+            LoadingEpoxyModel().id("load_list").addTo(this)
         }
-
-        TitleForGridModels("Main Family")
-            .id("main_family_header")
-            .addTo(this)
-
-        super.addModels(models.subList(0, 5))
-
-        (models.subList(5, models.size) as List<GridModelForEpoxyPaging>).groupBy {
-            it.name[0].toUpperCase()
-        }.forEach {
-            val title = it.key.toString().toUpperCase(Locale.US)
-            TitleForGridModels(title)
-                .id(title)
-                .addTo(this)
-            super.addModels(it.value)
-        }
+        super.addModels(models)
     }
-
 
     data class GridModelForEpoxyPaging(
         val characterId: Int,

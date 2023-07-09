@@ -11,18 +11,13 @@ class EpisodeListPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodeUIModel> {
         return try {
-            var nextPageNumber = params.key ?: 1
-            val prevPageNumber = if (nextPageNumber == 1) {
-                null
-            } else {
-                nextPageNumber - 1
-            }
+            var pageNumber = params.key ?: 1
 
             // do a network call
-            val episodePageRequest = repository.fetchEpisodes(nextPageNumber)
+            val episodePageRequest = repository.fetchEpisodes(pageNumber)
             val episodeResult = episodePageRequest?.results
 
-
+            var nextPageNumber: Int? = null
             if (episodePageRequest?.info?.next != null) {
                 val uri = Uri.parse(episodePageRequest.info.next)
                 val nextPageQuery = uri.getQueryParameter("page")
@@ -34,7 +29,7 @@ class EpisodeListPagingSource(
             }
             LoadResult.Page(
                 data = episodeList.orEmpty(),
-                prevKey = prevPageNumber,
+                prevKey = null,
                 nextKey = nextPageNumber
             )
         } catch (e: Exception) {
@@ -44,8 +39,6 @@ class EpisodeListPagingSource(
 
     }
 
-    override val keyReuseSupported: Boolean = true
-
     override fun getRefreshKey(state: PagingState<Int, EpisodeUIModel>): Int? {
         // Try to find the page key of the closest page to anchorPosition, from
         // either the prevKey or the nextKey, but you need to handle nullability
@@ -54,9 +47,10 @@ class EpisodeListPagingSource(
         //  * nextKey == null -> anchorPage is the last page.
         //  * both prevKey and nextKey null -> anchorPage is the initial page, so
         //    just return null.
-        return state.anchorPosition?.let { anchorPosition ->
-            val anchorPage = state.closestPageToPosition(anchorPosition)
-          anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-        }
+        /* return state.anchorPosition?.let { anchorPosition ->
+             val anchorPage = state.closestPageToPosition(anchorPosition)
+             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+         }*/
+        TODO("fnr")
     }
 }
