@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Characters">
         <menu>
             <group android:checkableBehavior="single">
@@ -19,5 +19,11 @@
             </group>
         </menu>
     </item>
+
+
+    <item android:id="@+id/about_dev"
+          android:title="About Developer"
+          android:icon="@drawable/info_24"/>
+
 
 </menu>

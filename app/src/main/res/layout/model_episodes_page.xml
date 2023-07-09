@@ -7,8 +7,8 @@
     android:layout_height="80dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
-    app:strokeColor="?colorOnSurface"
-    app:cardBackgroundColor="@color/md_theme_light_primaryContainer">
+    app:strokeColor="@color/black"
+    app:cardBackgroundColor="?colorPrimaryContainer">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Episode Name"
             android:textSize="18sp"
+            android:textColor="?colorOnPrimaryContainer"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textAirDate"
             app:layout_constraintStart_toStartOf="@+id/guideline1" app:layout_constraintTop_toTopOf="parent"
@@ -40,6 +41,7 @@
             android:layout_height="wrap_content"
             android:text="Air Date"
             android:textSize="14sp"
+            android:textColor="?colorOnPrimaryContainer"
             android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textEpisodeName"
