@@ -55,6 +55,21 @@ File Structure
 - RickAndMortyCache
 - SimpleResponse
 
-### **HomeActivity**
-### **RickMortyApplication**
+#### **HomeActivity**
+#### **RickMortyApplication**
+
+---
+
+
+## **MVVM Architecture**
+
+- 
+
+
+
+---
+## **Network Debugging**
+
+
+
     

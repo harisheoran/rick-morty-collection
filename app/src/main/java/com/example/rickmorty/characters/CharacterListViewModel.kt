@@ -26,4 +26,6 @@ class CharacterListViewModel : ViewModel() {
     )
 
     val pagingDataFlow: Flow<PagingData<GetCharacterByIdResponse>> = pager.flow.cachedIn(viewModelScope)
+
+
 }
