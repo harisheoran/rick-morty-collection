@@ -1,5 +1,7 @@
 package com.example.rickmorty
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -42,7 +44,18 @@ class HomeActivity : AppCompatActivity() {
             navController.graph.startDestinationId
         )
 
+
+        // about dev menu item
+        val menu = findViewById<NavigationView>(R.id.nav_view).menu
+        val aboutDev = menu.findItem(R.id.about_dev)
+        aboutDev?.setOnMenuItemClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://harisheoran.github.io"))
+            startActivity(intent)
+            true
+        }
     }
+
+
 
     // support back navigation
     override fun onSupportNavigateUp(): Boolean {
