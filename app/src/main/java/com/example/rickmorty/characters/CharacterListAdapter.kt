@@ -21,6 +21,8 @@ class CharacterListAdapter(private val onCharacterClick: (Int) -> Unit) :
         }
     }
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = CharacterViewHolder(ModelCharacterListItemBinding.inflate(LayoutInflater.from(parent.context)))
         return view
