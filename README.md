@@ -1,8 +1,10 @@
 ### Rick & Morty Collection App
 
 App to browse characters, episodes and search details from Rick & Morty Tv show.
+> Check out the app - [Download app](https://github.com/harisheoran/rick-morty-app/releases)
 
-Check out the app here - [Download app](https://github.com/harisheoran/rick-morty-app/releases) 
+> View full details [here](https://harisheoran.github.io/projects/rickmorty/)
+
 
 ---
 
