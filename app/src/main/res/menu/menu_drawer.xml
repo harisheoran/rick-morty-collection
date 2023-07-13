@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Characters">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item android:id="@+id/characterListFragment"
-                      android:title="All Characters"
-                      android:icon="@drawable/people_24"/>
-            </group>
-        </menu>
-    </item>
 
-    <item android:title="Episodes">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item android:id="@+id/episodeListFragment"
-                      android:title="All Episodes"
-                      android:icon="@drawable/tv_24"/>
-            </group>
-        </menu>
-    </item>
+    <item android:id="@+id/characterListFragment"
+          android:title="Characters"
+          android:icon="@drawable/people_24"/>
 
-
-    <item android:id="@+id/about_dev"
-          android:title="About Developer"
-          android:icon="@drawable/info_24"/>
-
-
+    <item android:id="@+id/episodeListFragment"
+          android:title="Episodes"
+          android:icon="@drawable/tv_24"/>
 </menu>
