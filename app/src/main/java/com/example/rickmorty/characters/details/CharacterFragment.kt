@@ -1,19 +1,15 @@
 package com.example.rickmorty.characters.details
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.airbnb.epoxy.EpoxyRecyclerView
 import com.example.rickmorty.NavGraphDirections
 import com.example.rickmorty.R
+import com.example.rickmorty.databinding.FragmentCharacterBinding
+import com.example.utils.BaseFragment
 
-class CharacterFragment : Fragment() {
+class CharacterFragment : BaseFragment<FragmentCharacterBinding>(R.layout.fragment_character) {
 
     private val viewModel: CharacterDetailsViewModel by lazy {
         ViewModelProvider(this).get(CharacterDetailsViewModel::class.java)
@@ -22,14 +18,15 @@ class CharacterFragment : Fragment() {
     private val epoxyController = CharacterDetailsEpoxyController(::onClickEpisode)
 
     private val args: CharacterFragmentArgs by navArgs()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_character, container, false)
+
+    override fun FragmentCharacterBinding.initializeOnViewCreated() {
+        initViewModelData()
+        this.epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        //     supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    // observing viewmodel data
+    private fun initViewModelData() {
+        viewModel.refreshCharacter(characterId = args.characterId)
 
         viewModel.characterByIdLiveData.observe(viewLifecycleOwner) {
             //update the data that is in epoxy controller
@@ -41,10 +38,6 @@ class CharacterFragment : Fragment() {
                 return@observe
             }
         }
-
-        viewModel.refreshCharacter(characterId = args.characterId)
-        val epoxyRecyclerView = view.findViewById<EpoxyRecyclerView>(R.id.epoxy_recycler_view)
-        epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
     }
 
     private fun onClickEpisode(episodeId: Int) {

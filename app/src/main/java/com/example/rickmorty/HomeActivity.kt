@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,14 +12,16 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.rickmorty.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
+
 
 class HomeActivity : AppCompatActivity() {
     lateinit var navController: NavController
     lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        val binding: ActivityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
         // navhostfragment
         val navHostFragment =
@@ -44,7 +47,6 @@ class HomeActivity : AppCompatActivity() {
             navController.graph.startDestinationId
         )
 
-
         // about dev menu item
         val menu = findViewById<NavigationView>(R.id.nav_view).menu
         val aboutDev = menu.findItem(R.id.about_dev)
@@ -54,7 +56,6 @@ class HomeActivity : AppCompatActivity() {
             true
         }
     }
-
 
 
     // support back navigation

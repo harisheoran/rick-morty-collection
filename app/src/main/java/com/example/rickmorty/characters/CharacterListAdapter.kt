@@ -11,7 +11,8 @@ import com.example.rickmorty.network.response.GetCharacterByIdResponse
 class CharacterListAdapter(private val onCharacterClick: (Int) -> Unit) :
     PagingDataAdapter<GetCharacterByIdResponse, RecyclerView.ViewHolder>(DiffCallback) {
 
-    class CharacterViewHolder(var binding: ModelCharacterListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CharacterViewHolder(private val binding: ModelCharacterListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(onCharacterClick: (Int) -> Unit, character: GetCharacterByIdResponse) {
             binding.character = character
             binding.executePendingBindings()
@@ -20,8 +21,6 @@ class CharacterListAdapter(private val onCharacterClick: (Int) -> Unit) :
             }
         }
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = CharacterViewHolder(ModelCharacterListItemBinding.inflate(LayoutInflater.from(parent.context)))
