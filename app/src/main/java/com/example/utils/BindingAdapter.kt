@@ -1,7 +1,10 @@
-package com.example.rickmorty
+package com.example.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.airbnb.epoxy.EpoxyRecyclerView
+import com.example.rickmorty.domain.models.Character
+import com.example.rickmorty.episodes.details.EpisodeDetailsEpoxyController
 import com.squareup.picasso.Picasso
 
 
@@ -13,4 +16,9 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         Picasso.get().load(imgUrl).into(imgView)
     }
+}
+
+@BindingAdapter("setEpoxyController")
+fun setEpoxyController(epoxyRecyclerView: EpoxyRecyclerView, characters: List<Character>?) {
+    epoxyRecyclerView.setControllerAndBuildModels(EpisodeDetailsEpoxyController(characters))
 }

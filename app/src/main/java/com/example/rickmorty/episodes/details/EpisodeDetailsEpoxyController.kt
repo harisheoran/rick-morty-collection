@@ -8,11 +8,11 @@ import com.example.rickmorty.domain.models.Character
 import com.squareup.picasso.Picasso
 
 class EpisodeDetailsEpoxyController(
-    private val characterList: List<Character>
+    private val characterList: List<Character>?
 ) : EpoxyController() {
 
     override fun buildModels() {
-        characterList.forEach {
+        characterList?.forEach {
             CharacterDetailsBottomSheetModel(
                 name = it.name,
                 imageUrl = it.image
