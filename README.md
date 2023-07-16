@@ -97,12 +97,12 @@ class CharacterListRepository {
 }
 ```
 
-- Sending request to api using Api client 
+- Sending requests to API using Api client 
 
 ``` 
 val request = NetworkLayer.apiClient.getCharactersPages(pageIndex)
 ```
-then checking the request and return accordingly.
+then check the request and return accordingly.
 
 ### Paging 3 
 
@@ -122,82 +122,3 @@ then checking the request and return accordingly.
 
 ### Data binding
 ...
-
-
-
-
-
---- 
-
-File Structure
-
-### **characters**
-- *details* - 
-    - CharacterFragment
-    - CharacterDetailsEpoxyController
-    - CharacterDetailsViewModel
-    - CharacterDetailsRepository
-
-- CharacterListFragment
-- CharacterListPagingEpoxyController
-- CharacterListPagingDataSource
-- CharacterListViewModel
-- CharacterListRepository
-
-### **domain**
-- *mappers*
-    - CharacterMapper
-    - EpisodeMapper
-
-- *models*
-    - Character
-    - Episode
-
-### **episodes**
-- *details*
-    - EpisodeDetailsFragment
-    - EpisodeDetailsEpoxyController
-    - EpisodeDetailsViewModel
-
-- EpisodeListFragment
-- EpisodeListPagingEpoxyContoller
-- EpisodeListPagingSource
-- EpisodeListViewModel
-- EpisodeListRepository
-- EpisodeUIModel
-
-### **epoxy**
-- LoadingEpoxyModel
-- ViewBindingKotlinModel
-
-### **network**
-- *response*
-    - GetCharacterByIdResponse
-    - GetCharactersPageResponse
-    - GetEpisodeByIdResponse
-    - GetEpisodesPageResponse
-    - PageInfo
-- NetworkLayer
-- RickAndMortyService
-- ApiClient
-- RickAndMortyCache
-- SimpleResponse
-
-#### **HomeActivity**
-#### **RickMortyApplication**
-
----
-
-
-## **MVVM Architecture**
-
-- 
-
-
-
----
-## **Network Debugging**
-
-
-
-    
